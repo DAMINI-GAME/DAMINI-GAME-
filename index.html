@@ -5,52 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>МІЯ — Ігровий портал</title>
   <style>
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1f1f1f;
+      --hover-bg: #2a2a2a;
+      --text-color: #f0f0f0;
+      --accent: #3b82f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #121212;
-      color: #f0f0f0;
+      background: var(--bg-color);
+      color: var(--text-color);
     }
 
     header {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1.5rem 1rem;
       background: #1e1e1e;
     }
 
     h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
     }
 
     #menu {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 2rem;
-      gap: 1.5rem;
+      gap: 1rem;
+      padding: 2rem 1rem;
     }
 
     .game-card {
-      background: #1f1f1f;
+      background: var(--card-bg);
       padding: 1rem;
       border-radius: 12px;
-      width: 200px;
+      width: 100%;
+      max-width: 220px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.2s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .game-card:hover {
-      transform: scale(1.05);
-      background: #2a2a2a;
+      transform: scale(1.04);
+      background: var(--hover-bg);
+    }
+
+    .game-card h2 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
     }
 
     iframe {
       width: 100%;
-      height: 80vh;
+      max-width: 1000px;
+      height: 75vh;
       border: none;
+      border-radius: 12px;
+      background: #000;
     }
 
     #game-container {
@@ -62,17 +83,32 @@
 
     #backBtn {
       margin-top: 1rem;
-      background: #333;
+      background: var(--accent);
       border: none;
       color: #fff;
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.5rem;
       border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
     }
 
     #backBtn:hover {
-      background: #555;
+      background: #2563eb;
+    }
+
+    @media (max-width: 600px) {
+      iframe {
+        height: 70vh;
+      }
+
+      .game-card {
+        max-width: 90%;
+      }
+
+      #backBtn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+      }
     }
   </style>
 </head>
@@ -84,11 +120,11 @@
   <div id="menu">
     <div class="game-card" onclick="loadGame('2048')">
       <h2>2048</h2>
-      <p>З’єднуй плитки, щоб дістатися до 2048!</p>
+      <p>Класична головоломка на логіку</p>
     </div>
     <div class="game-card" onclick="loadGame('flappy')">
       <h2>Flappy Bird</h2>
-      <p>Пролітай між трубами — не вріжся!</p>
+      <p>Аркада — не вдарся об трубу!</p>
     </div>
   </div>
 
