@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>МІЯ — Ігровий портал</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #f0f0f0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #1e1e1e;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    #menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+
+    .game-card {
+      background: #1f1f1f;
+      padding: 1rem;
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .game-card:hover {
+      transform: scale(1.05);
+      background: #2a2a2a;
+    }
+
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
+
+    #game-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    #backBtn {
+      margin-top: 1rem;
+      background: #333;
+      border: none;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #backBtn:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>МІЯ — Ігри в браузері</h1>
+  </header>
+
+  <div id="menu">
+    <div class="game-card" onclick="loadGame('2048')">
+      <h2>2048</h2>
+      <p>З’єднуй плитки, щоб дістатися до 2048!</p>
+    </div>
+    <div class="game-card" onclick="loadGame('flappy')">
+      <h2>Flappy Bird</h2>
+      <p>Пролітай між трубами — не вріжся!</p>
+    </div>
+  </div>
+
+  <div id="game-container">
+    <iframe id="game-frame" src=""></iframe>
+    <button id="backBtn" onclick="goBack()">Назад до меню</button>
+  </div>
+
+  <script>
+    function loadGame(game) {
+      const frame = document.getElementById('game-frame');
+      frame.src = `games/${game}/index.html`;
+      document.getElementById('menu').style.display = 'none';
+      document.getElementById('game-container').style.display = 'flex';
+    }
+
+    function goBack() {
+      const frame = document.getElementById('game-frame');
+      frame.src = '';
+      document.getElementById('menu').style.display = 'flex';
+      document.getElementById('game-container').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
